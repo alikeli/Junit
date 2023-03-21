@@ -83,6 +83,7 @@ public class UserServiceTest {
         assertTrue(foundUser.isEmpty());
     }
 
+
     @AfterEach
     void deleteDataFromDb() {
         System.out.println("After each: " + this);

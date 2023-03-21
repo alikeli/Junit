@@ -7,8 +7,10 @@ import org.junit.jupiter.api.*;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UserServiceTest {
     private static final User IVAN = User.of(1, "Ivan", "1213");
@@ -17,9 +19,10 @@ public class UserServiceTest {
     private UserService userService;
 
     @BeforeAll
-     void init() {
+    void init() {
         System.out.println("Before all: " + this);
     }
+
     @BeforeEach
     void prepare() {
         System.out.println("Before each: " + this);
@@ -70,13 +73,27 @@ public class UserServiceTest {
         assertTrue(foundUser.isEmpty());
     }
 
+    @Test
+    void throwExceptionIfUserNameOrPasswordIsNull() {
+        assertAll(
+                ()->{
+               var exception = assertThrows(IllegalArgumentException.class, () -> userService
+                       .login(null, "123"));
+                       assertThat(exception.getMessage()).isEqualTo("username or password is null");
+                },
+
+                ()-> assertThrows(IllegalArgumentException.class, () -> userService.login("null", null))
+        );
+    }
+
+
     @AfterEach
     void deleteDataFromDb() {
         System.out.println("After each: " + this);
     }
 
     @AfterAll
-     void closeConnection() {
+    void closeConnection() {
         System.out.println("After all: " + this);
     }
 
