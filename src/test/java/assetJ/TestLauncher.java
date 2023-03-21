@@ -1,11 +1,12 @@
-import org.com.junit.service.UserService;
+package assetJ;
+
+import assetJ.service.UserServiceTest;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 import org.junit.platform.launcher.listeners.SummaryGeneratingListener;
-import service.UserServiceTest;
 
 import java.io.PrintWriter;
 
