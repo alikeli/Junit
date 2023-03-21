@@ -1,4 +1,4 @@
-package org.com.junit;
+package org.com.junit.service;
 
 import org.com.junit.dto.User;
 

@@ -1,4 +1,6 @@
-import org.com.junit.UserService;
+package service;
+
+import org.com.junit.service.UserService;
 import org.com.junit.dto.User;
 import org.junit.jupiter.api.*;
 
@@ -7,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class UserServiceTest {
+public class UserServiceTest {
     private UserService userService;
 
     @BeforeAll
