@@ -12,7 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserServiceTest {
+
     private static final User IVAN = User.of(1, "Ivan", "1213");
     private static final User OLEG = User.of(2, "Oleg", "147");
     private static final User OLGA = User.of(3, "Olga", "789");
@@ -31,6 +33,7 @@ public class UserServiceTest {
 
 
     @Test
+    @Order(1)
     void usersEmptyIfNoUserAddedTest() {
         System.out.println("Test 1: " + this);
 
@@ -40,6 +43,7 @@ public class UserServiceTest {
 
 
     @Test
+    @Order(2)
     void userSizeIfUserAdded() {
         System.out.println("Test 2: " + this);
         userService.add(IVAN);
@@ -50,6 +54,7 @@ public class UserServiceTest {
     }
 
     @Test
+    @Tag("login")
     void loginSuccessIfUserExist() {
         userService.add(IVAN);
         Optional<User> foundUser = userService.login(IVAN.getUserName(), IVAN.getPassword());
@@ -58,6 +63,7 @@ public class UserServiceTest {
     }
 
     @Test
+    @Tag("login")
     void loginFailWhenPasswordNotCorrect() {
         userService.add(IVAN);
         Optional<User> foundUser = userService.login(IVAN.getUserName(),
@@ -66,6 +72,7 @@ public class UserServiceTest {
     }
 
     @Test
+    @Tag("login")
     void loginFailWhenUserDoesNotExist() {
         userService.add(IVAN);
         Optional<User> foundUser = userService.login("Non",
@@ -74,6 +81,7 @@ public class UserServiceTest {
     }
 
     @Test
+    @Tag("login")
     void throwExceptionIfUserNameOrPasswordIsNull() {
         assertAll(
                 ()->{
