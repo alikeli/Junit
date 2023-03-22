@@ -1,8 +1,10 @@
 package junit.service;
 
+import junit.paramResolver.UserServiceParamResolver;
 import org.com.junit.service.UserService;
 import org.com.junit.dto.User;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@ExtendWith({
+        UserServiceParamResolver.class
+})
 public class UserServiceTest {
 
     private static final User IVAN = User.of(1, "Ivan", "1213");
@@ -20,15 +25,19 @@ public class UserServiceTest {
     private static final User OLGA = User.of(3, "Olga", "789");
     private UserService userService;
 
+    UserServiceTest(TestInfo testInfo) {
+        System.out.println();
+    }
+
     @BeforeAll
     void init() {
         System.out.println("Before all: " + this);
     }
 
     @BeforeEach
-    void prepare() {
+    void prepare(UserService userService) {
         System.out.println("Before each: " + this);
-        userService = new UserService();
+        this.userService = userService;
     }
 
 
