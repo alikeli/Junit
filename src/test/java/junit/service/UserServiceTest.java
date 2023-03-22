@@ -33,7 +33,7 @@ public class UserServiceTest {
 
 
     @Test
-    @Order(1)
+    @Order(4)
     void usersEmptyIfNoUserAddedTest() {
         System.out.println("Test 1: " + this);
 
@@ -65,7 +65,7 @@ public class UserServiceTest {
 
     @Test
     @Tag("login")
-    @Order(4)
+    @Order(1)
     void loginFailWhenPasswordNotCorrect() {
         userService.add(IVAN);
         Optional<User> foundUser = userService.login(IVAN.getUserName(),
