@@ -54,6 +54,7 @@ public class UserServiceTest {
     }
 
     @Test
+    @Order(3)
     @Tag("login")
     void loginSuccessIfUserExist() {
         userService.add(IVAN);
@@ -64,6 +65,7 @@ public class UserServiceTest {
 
     @Test
     @Tag("login")
+    @Order(4)
     void loginFailWhenPasswordNotCorrect() {
         userService.add(IVAN);
         Optional<User> foundUser = userService.login(IVAN.getUserName(),
