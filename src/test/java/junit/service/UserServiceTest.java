@@ -33,6 +33,7 @@ public class UserServiceTest {
 
 
     @Test
+    @DisplayName("user will be empty if user not added")
     @Order(4)
     void usersEmptyIfNoUserAddedTest() {
         System.out.println("Test 1: " + this);
